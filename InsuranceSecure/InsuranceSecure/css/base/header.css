@@ -1,0 +1,39 @@
+﻿header {
+    margin: 0 10px 0 10px;
+    width: inherit;
+    display: block;
+    height: 10rem;
+    background-color: white;
+    color: #929497;
+    z-index: 88;
+}
+
+#is-header{
+    margin: auto;
+    width: 30%;
+    padding: 1rem;
+}
+
+#is-header .description{
+    color:red;
+    font-style: italic;
+    font-weight: bold;
+    padding-left: 3.5rem;
+    padding-top: -1rem;
+}
+
+#is-useroptions{
+    float:right;
+    top: -4rem;
+    position: relative;
+    padding-right: 2rem;
+}
+
+#is-name {
+    font-size: 4rem;
+}
+
+#logo{
+    width: 50px;
+    display:inline
+}
