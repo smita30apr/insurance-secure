@@ -2,15 +2,20 @@
     margin: 0 10px 0 10px;
     width: inherit;
     display: block;
-    height: 10rem;
+    height: 14rem;
     background-color: white;
     color: #929497;
     z-index: 88;
+    
+}
+
+header .outer-header {
+    border-bottom: 1px solid lightgrey;
 }
 
 #is-header{
     margin: auto;
-    width: 30%;
+    width: 40rem;
     padding: 1rem;
 }
 
@@ -36,4 +41,30 @@
 #logo{
     width: 50px;
     display:inline
+}
+
+#is-insurance-types ul {
+    padding-top : 1rem;
+    width: 50rem;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#is-insurance-types ul a{
+    text-decoration : none;
+    color: #929497;
+    margin-bottom: 0.5rem;
+}
+
+#is-insurance-types li{
+    display: inline;
+    margin-right : 3rem;
+}
+
+#is-insurance-types li.selected {
+    border-bottom: 3px solid #f65e00;
+}
+
+.invisible {
+    display: none;
 }

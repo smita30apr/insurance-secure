@@ -1,5 +1,7 @@
 ﻿body {
     padding-bottom: 20px;
+    background-color : lightgray;
+    font-family : 'Times New Roman'
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -44,33 +46,6 @@ main{
     padding: 0 4rem;
     background-color: white;
     height:100%;
-}
-
-/*#is-insurance-types ul {
-    /*padding : 1rem 0;*/
-    padding-top : 1rem;
-    width: 50%;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-#is-insurance-types ul a{
-    text-decoration : none;
-    color: #929497;
-    margin-bottom: 0.5rem;
-}
-
-#is-insurance-types li{
-    display: inline;
-    margin-right : 3rem;
-}
-
-#is-insurance-types li.selected {
-    border-bottom: 3px solid #f65e00;
-}*/
-
-.invisible {
-    display: none;
 }
 
 /*#is-policy-listing,
