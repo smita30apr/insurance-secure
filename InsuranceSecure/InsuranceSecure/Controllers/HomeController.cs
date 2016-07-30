@@ -1,6 +1,11 @@
-﻿using System;
+﻿using InsuranceSecure.ModelMappers;
+using InsuranceSecure.Models.Insurance;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,7 +15,16 @@ namespace InsuranceSecure.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect(Url.Content("~/home/insurance?type=life"));
+        }
+
+        [ActionName("Insurance")]
+        public ActionResult Insurance(string type)
+        {
+            Insurance insurance = InsuranceMapper.FromType(type);
+            PropertyInfo[] properties = insurance.GetType().GetProperties();
+
+            return View("Insurance", insurance);
         }
 
         public ActionResult About()

@@ -1,0 +1,12 @@
+﻿@model Tuple<Insurance, List<PropertyInfo>>
+
+@{ 
+    switch (Model.Item1.GetType().Name)
+    {
+        case "Life":
+            @Html.Partial("Insurance/Life", Model.Item2)
+            break;
+        default:
+            break;
+    }
+}

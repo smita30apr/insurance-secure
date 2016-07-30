@@ -173,8 +173,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UrlHelpers.cs" />
+    <Compile Include="ModelMappers\InsuranceMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Insurance\Life.cs" />
+    <Compile Include="Models\Insurance\Insurance.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -190,6 +194,8 @@
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.jpg" />
     <Content Include="images\policy-compare.jpg" />
+    <Content Include="js\base\countries.js" />
+    <Content Include="js\base\index.js" />
     <Content Include="js\jquery.validate.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\jquery.validate.unobtrusive.js" />
@@ -232,6 +238,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Home\Insurance.cshtml" />
+    <Content Include="Views\Home\InsuranceType.cshtml" />
+    <Content Include="Views\Home\Insurance\Life.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

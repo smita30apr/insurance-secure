@@ -18,6 +18,12 @@ namespace InsuranceSecure
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "Insurance",
+               url: "home/Insurance/{type}",
+               defaults: new { controller = "Home", action = "Insurance" }
+           );
         }
     }
 }

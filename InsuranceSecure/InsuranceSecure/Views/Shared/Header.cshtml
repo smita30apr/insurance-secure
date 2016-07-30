@@ -1,4 +1,6 @@
-﻿
+﻿@{ 
+    var type = Request.QueryString.AllKeys.Contains("type") ? Request.QueryString["type"].ToLower() : "";
+}
 <header>
     <div class="outer-header">
         <div id="is-header">
@@ -12,12 +14,12 @@
 
     <div id="is-insurance-types">
         <ul>
-            <li class="selected">Life</li>
-            <li>Car</li>
-            <li>Home</li>
-            <li>Health</li>
-            <li>Bike</li>
-            <li>Travel</li>
+            <li class="@(type == "life" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=life")">Life</a></li>
+            <li class="@(type == "car" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=car")">Car</a></li>
+            <li class="@(type == "home" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=home")">Home</a></li>
+            <li class="@(type == "health" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=health")">Health</a></li>
+            <li class="@(type == "bike" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=bike")">Bike</a></li>
+            <li class="@(type == "travel" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=travel")">Travel</a></li>
         </ul>
     </div>
     

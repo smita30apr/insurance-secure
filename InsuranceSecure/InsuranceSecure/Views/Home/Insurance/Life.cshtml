@@ -1,0 +1,19 @@
+﻿@model List<PropertyInfo>
+
+@foreach (PropertyInfo property in Model)
+{
+    var displayName = property.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().Single().Name;
+    <div class="input">
+        @switch (property.Name)
+        {
+            case "SmokingStatus":
+                <input type="checkbox" id="smokingStatus"/>
+                <label for="smokingStatus">Smoking Status</label>
+                break;
+            default:
+                break;
+        }
+    </div>
+}
+
+
