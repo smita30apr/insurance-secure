@@ -7,7 +7,7 @@ namespace InsuranceSecure.Models.Insurance
     public class Life : Insurance
     {
         [Required]
-        [Display(Name = "Smoking status")]
+        [Display(Name = "Smoke?")]
         public Boolean SmokingStatus { get; set; }
     }
 }

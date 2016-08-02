@@ -1,0 +1,32 @@
+﻿@model Health
+@{ 
+    var properties = Model.GetType().GetProperties(
+         BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).ToList();
+}
+@foreach (PropertyInfo property in properties)
+{
+    var displayName = property.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().Single().Name;
+    <div class="input">
+        @switch (property.Name)
+        {
+            case "EldestDOB":
+                <input type="date" />
+                    <label>DOB of the Eldest</label>
+                break;
+            case "Adults":
+            case "Children":
+                <select name="num-@property.Name">
+                    @for(var i = 1; i < 5; i++)
+                    {
+                    <option value="@i">@i</option>
+                    }
+                </select>
+                <label>Number of @property.Name</label>
+                break;
+            default:
+                break;
+        }
+    </div>
+}
+
+

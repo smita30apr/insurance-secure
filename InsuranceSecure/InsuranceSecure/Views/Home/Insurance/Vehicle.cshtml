@@ -1,0 +1,37 @@
+﻿@model Vehicle
+@{
+    var properties = Model.GetType().GetProperties(
+        BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).ToList();
+}
+@foreach (PropertyInfo property in properties)
+{
+    var displayName = property.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().Single().Name;
+    var currentYear = DateTime.Now.Year;
+    <div class="input">
+        @switch (property.Name)
+        {
+            case "RegistrationYear":
+                <select name="year">
+                    Select Registration. Year
+                    @for (var i = currentYear; i >= (currentYear - 10); i--)
+                    {
+                        <option value="@i">@i.ToString()</option>
+                    }
+                </select>
+                break;
+            case "PolicyType":
+                foreach (var type in Enum.GetValues(typeof(VehiclePolicyType)))
+                {
+                    <input id="policy-type-@type.ToString()" type="radio" name="policy-type" value="@type.ToString()"
+                           @((VehiclePolicyType)type == VehiclePolicyType.New ? "checked": "")/>
+                    <label for="policy-type-@type.ToString()">@type.ToString()</label>
+                }
+                break;
+            default:
+                <input name="@property.Name" placeholder="Enter @displayName" />
+                break;
+        }
+    </div>
+}
+
+

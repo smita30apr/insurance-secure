@@ -16,6 +16,13 @@ namespace InsuranceSecure.ModelMappers
                 case "life":
                     insurance = new Life();
                     break;
+                case "car":
+                case "bike":
+                    insurance = new Vehicle();
+                    break;
+                case "health":
+                    insurance = new Health();
+                    break;
                 default:
                     insurance = new Insurance();
                     break;

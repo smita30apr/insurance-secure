@@ -179,6 +179,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Insurance\Life.cs" />
     <Compile Include="Models\Insurance\Insurance.cs" />
+    <Compile Include="Models\Insurance\Health.cs" />
+    <Compile Include="Models\Insurance\Vehicle.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -241,6 +243,8 @@
     <Content Include="Views\Home\Insurance.cshtml" />
     <Content Include="Views\Home\InsuranceType.cshtml" />
     <Content Include="Views\Home\Insurance\Life.cshtml" />
+    <Content Include="Views\Home\Insurance\Vehicle.cshtml" />
+    <Content Include="Views\Home\Insurance\Health.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

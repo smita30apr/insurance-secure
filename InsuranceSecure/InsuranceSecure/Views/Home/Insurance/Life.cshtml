@@ -1,6 +1,8 @@
-﻿@model List<PropertyInfo>
-
-@foreach (PropertyInfo property in Model)
+﻿@model Life
+@{ 
+   var properties = Model.GetType().GetProperties().ToList();
+}
+@foreach (PropertyInfo property in properties)
 {
     var displayName = property.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().Single().Name;
     <div class="input">

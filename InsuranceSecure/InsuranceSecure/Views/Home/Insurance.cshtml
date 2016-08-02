@@ -44,7 +44,9 @@
                 }
             </div>
         }
-        @Html.Partial("InsuranceType", Tuple.Create(Model, properties))
+        @Html.Partial("InsuranceType")
+
+        <button id="is-submit-button" type="submit">Get Quotes</button>
     </div>
 </div>
 

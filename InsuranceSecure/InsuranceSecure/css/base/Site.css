@@ -106,6 +106,12 @@ main{
     float:right;
 }
 
+#is-submit-button,
 #is-user-details .input{  
     margin: 1rem 2.5rem;
+}
+
+#is-submit-button {
+    background-color: red;
+    color: white
 }
