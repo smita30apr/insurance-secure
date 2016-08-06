@@ -11,7 +11,7 @@
         @switch (property.Name)
         {
             case "RegistrationYear":
-                <select name="year">
+                <select name=@property.Name.ToLower() required>
                     Select Registration. Year
                     @for (var i = currentYear; i >= (currentYear - 10); i--)
                     {
@@ -22,13 +22,13 @@
             case "PolicyType":
                 foreach (var type in Enum.GetValues(typeof(VehiclePolicyType)))
                 {
-                    <input id="policy-type-@type.ToString()" type="radio" name="policy-type" value="@type.ToString()"
+                    <input name=@property.Name.ToLower() required id="policy-type-@type.ToString()" type="radio" value="@type.ToString()"
                            @((VehiclePolicyType)type == VehiclePolicyType.New ? "checked": "")/>
                     <label for="policy-type-@type.ToString()">@type.ToString()</label>
                 }
                 break;
             default:
-                <input name="@property.Name" placeholder="Enter @displayName" />
+                <input required name="@property.Name.ToLower()" placeholder="Enter @displayName" />
                 break;
         }
     </div>

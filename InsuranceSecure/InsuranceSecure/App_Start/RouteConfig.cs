@@ -23,6 +23,12 @@ namespace InsuranceSecure
                name: "Insurance",
                url: "home/Insurance/{type}",
                defaults: new { controller = "Home", action = "Insurance" }
+            );
+
+            routes.MapRoute(
+               name: "Agents User View",
+               url: "Agents/All",
+               defaults: new { controller = "Agents", action = "Agents" }
            );
         }
     }

@@ -1,0 +1,12 @@
+﻿@model List<InsuranceSecure.Controllers.DisplayAgent>
+
+<ul>
+    @foreach (var agent in Model)
+    {
+        <li>
+            <h3>@agent.Name</h3>
+            <span>@agent.Address</span>
+            <span>@agent.City @agent.Pin</span>
+        </li>
+    }
+</ul>

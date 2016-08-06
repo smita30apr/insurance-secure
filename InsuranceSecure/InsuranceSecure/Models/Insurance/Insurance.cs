@@ -35,6 +35,10 @@ namespace InsuranceSecure.Models.Insurance
         public DateTime DOB { get; set; }
 
         [Required]
+        [Display(Name = "Pin Code")]
+        public string PinCode { get; set; }
+
+        [Required]
         [Display(Name = "State")]
         public string State { get; set; }
 

@@ -1,0 +1,16 @@
+﻿@model List<InsuranceData>
+@{ 
+    var session = HttpContext.Current.Session;
+}
+<ul>
+    @foreach (var insurance in Model)
+    {
+        <li>
+            <a href="@Url.Content($"~/Agents/All?pin={session["@User/PinCode"]}&type={insurance.Type}")">
+                <h2>@insurance.Type</h2>
+                <h3>@insurance.Heading</h3>
+                <span>@insurance.Description</span>
+            </a>
+        </li>
+    }
+</ul>

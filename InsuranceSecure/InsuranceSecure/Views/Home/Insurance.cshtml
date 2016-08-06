@@ -8,46 +8,52 @@
 <div id="is-insurance">
     <div id="is-insurance-benifits">
     </div>
-    <div id="is-user-details">
-        @foreach (PropertyInfo property in properties)
-        {
-            var displayName = property.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().Single().Name;
-            <div class="input">
-                <select class="invisible" id="country" name="country"></select>
-                @switch (property.Name)
-                {
-                case "DOB":
-                    <input type="date" />
-                    <label>DOB</label>
-                break;
-                case "State":
-                        <select id="state"></select>
-                    break;
-                case "Coverage":
-                        <select id="coverage">
-                            <option>Select Insurance Coverage</option>
-                            @foreach (var option in Enum.GetValues(typeof(InsuranceCoverage)))
-                            {
-                                <option value="@option.ToString()">@InsuranceSecure.Helpers.UrlHelpers.GetCoverageString(Url, (InsuranceCoverage)option)</option>
-                            }
-                        </select>
-                    break;
-                case "FirstName":
-                case "LastName":
-                case "Email":
-                case "ContactNumber":
-                case "City":
-                    <input type="@(property.Name == "Email" ? "email":"text")" placeholder="Enter @displayName" />
-                break;
-                default:
-                        break;
-                }
-            </div>
-        }
-        @Html.Partial("InsuranceType")
+    <form method="get" action="~/Compare/CompareInsurance">
+        <input type="hidden" name="insurance-type" value="@Request.QueryString["type"]" />
+        <div id="is-user-details">
+            @foreach (PropertyInfo property in properties)
+            {
+                var displayName = property.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().Single().Name;
+                <div class="input">
+                    <select class="invisible" id="country" name="country"></select>
+                    @switch (property.Name)
+                    {
+                        case "DOB":
+                            <input name="dob" type="date" />
+                            <label>DOB</label>
+                            break;
+                        case "State":
+                            <select required id="state" name="state"></select>
+                            break;
+                        case "Coverage":
+                            <select required id="coverage" name="coverage">
+                                <option>Select Insurance Coverage</option>
+                                @foreach (var option in Enum.GetValues(typeof(InsuranceCoverage)))
+                                {
+                                    <option value="@option.ToString()">@InsuranceSecure.Helpers.UrlHelpers.GetCoverageString(Url, (InsuranceCoverage)option)</option>
+                                }
+                            </select>
+                            break;
+                        case "ContactNumber":
+                        case "PinCode":
+                            <input name=@property.Name.ToLower() required type="number" maxlength="@(property.Name == "PinCode" ? "6": "15")" placeholder="Enter @displayName" />
+                            break;
+                        case "FirstName":
+                        case "LastName":
+                        case "Email":
+                        case "City":
+                            <input name=@property.Name.ToLower() required type="@(property.Name == "Email" ? "email":"text")" placeholder="Enter @displayName" />
+                            break;
+                        default:
+                            break;
+                    }
+                </div>
+            }
+            @Html.Partial("InsuranceType")
 
-        <button id="is-submit-button" type="submit">Get Quotes</button>
-    </div>
+            <button id="is-submit-button" type="submit">Get Quotes</button>
+        </div>
+    </form>
 </div>
 
 

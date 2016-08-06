@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -168,6 +170,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgentsController.cs" />
+    <Compile Include="Controllers\CompareController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,16 +181,40 @@
     <Compile Include="Helpers\UrlHelpers.cs" />
     <Compile Include="ModelMappers\InsuranceMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Agents\Agent.cs">
+      <DependentUpon>AgentsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Agents\AgentsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgentsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Agents\AgentsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgentsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Agents\AgentsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgentsModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Insurance\InsuranceData.cs" />
     <Compile Include="Models\Insurance\Life.cs" />
     <Compile Include="Models\Insurance\Insurance.cs" />
     <Compile Include="Models\Insurance\Health.cs" />
     <Compile Include="Models\Insurance\Vehicle.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\User\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Agents.mdf" />
+    <Content Include="App_Data\Agents_log.ldf">
+      <DependentUpon>Agents.mdf</DependentUpon>
+    </Content>
     <Content Include="css\base\header.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -205,6 +234,16 @@
     <Content Include="js\respond.js" />
     <Content Include="js\respond.min.js" />
     <Content Include="js\_references.js" />
+    <Content Include="Models\Agents\AgentsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AgentsModel.edmx</DependentUpon>
+      <LastGenOutput>AgentsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Agents\AgentsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AgentsModel.edmx</DependentUpon>
+      <LastGenOutput>AgentsModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -245,17 +284,28 @@
     <Content Include="Views\Home\Insurance\Life.cshtml" />
     <Content Include="Views\Home\Insurance\Vehicle.cshtml" />
     <Content Include="Views\Home\Insurance\Health.cshtml" />
+    <Content Include="Views\Agents\Index.cshtml" />
+    <Content Include="Views\Compare\Compare.cshtml" />
+    <Content Include="Views\Agents\AgentsUserView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="Models\Agents\AgentsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AgentsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Agents\AgentsModel.edmx.diagram">
+      <DependentUpon>AgentsModel.edmx</DependentUpon>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
