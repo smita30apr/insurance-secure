@@ -1,5 +1,8 @@
 ﻿using InsuranceSecure.Models.Agents;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web.Mvc;
 
 namespace InsuranceSecure.Controllers
@@ -13,6 +16,11 @@ namespace InsuranceSecure.Controllers
     }
     public class AgentsController : Controller
     {
+        public static List<int> GetWorkingHours()
+        {
+            return new List<int>() { 9, 10, 11, 12, 13, 15, 16, 17 };
+        }
+
         // GET: Agents
         [Route("Agents")]
         public ActionResult Index()
@@ -42,6 +50,47 @@ namespace InsuranceSecure.Controllers
             }).ToList();
 
             return View("AgentsUserView", displayAgents);
+        }
+
+        [HttpGet]
+        public ActionResult WorkingHours(string date)
+        {
+            //TODO: take individual agents working hours
+            DateTime dateSelected = Convert.ToDateTime(date);
+            if (DateTime.Now < dateSelected)
+                return PartialView("TimeSlots", GetWorkingHours());
+            return PartialView("TimeSlots", GetWorkingHours().Where(w => w > DateTime.Now.Hour + 1).ToList());
+        }
+
+        [HttpGet]
+        [Route("Agents/BookAppointment")]
+        public ActionResult BookAppointment(/*string url*/)
+        {
+            var dateTime = "2014-1-11";
+            var appointmentDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH-mm-ss", System.Globalization.CultureInfo.InvariantCulture);
+            using (var client = new SmtpClient())
+            {
+                MailMessage newMail = new MailMessage();
+                newMail.To.Add(new MailAddress("smita30apr@gmail.com"));
+                newMail.Subject = "Test Subject";
+                newMail.IsBodyHtml = true;
+
+                var inlineLogo = new LinkedResource(Server.MapPath("~/images/logo2.jpg"));
+                inlineLogo.ContentId = Guid.NewGuid().ToString();
+
+                string body = string.Format(@"
+                    <p>Lorum Ipsum Blah Blah</p>
+                    <img src=""cid:{0}"" />
+                    <p>Lorum Ipsum Blah Blah</p>
+                    ", inlineLogo.ContentId);
+
+                var view = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
+                view.LinkedResources.Add(inlineLogo);
+                newMail.AlternateViews.Add(view);
+
+                client.Send(newMail);
+            }
+            return Json(new { name ="s"});
         }
 
         // GET: Agents/Details/5

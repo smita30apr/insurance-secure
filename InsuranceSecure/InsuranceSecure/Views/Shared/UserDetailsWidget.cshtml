@@ -1,0 +1,18 @@
+﻿@{ 
+    var session = Request.RequestContext.HttpContext.Session;
+}
+
+<div id="user-details">
+    <div>
+        <label>Name</label>
+        <input name="user-name" value="@($"{session["@User/FirstName"]} {session["@User/LastName"]}")" />
+    </div>
+    <div>
+        <label>Contact</label>
+        <input name="contact" value="@session["@User/ContactNumber"]" />
+    </div>
+    <div>
+        <label>Email</label>
+        <input name="email" value="@(session["@User/Email"])" />
+    </div>
+</div>

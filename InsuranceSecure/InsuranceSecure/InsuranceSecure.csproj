@@ -216,6 +216,7 @@
       <DependentUpon>Agents.mdf</DependentUpon>
     </Content>
     <Content Include="css\base\header.css" />
+    <Content Include="css\base\popups.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -225,6 +226,7 @@
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.jpg" />
     <Content Include="images\policy-compare.jpg" />
+    <Content Include="js\base\appointment.js" />
     <Content Include="js\base\countries.js" />
     <Content Include="js\base\index.js" />
     <Content Include="js\jquery.validate.js" />
@@ -287,6 +289,8 @@
     <Content Include="Views\Agents\Index.cshtml" />
     <Content Include="Views\Compare\Compare.cshtml" />
     <Content Include="Views\Agents\AgentsUserView.cshtml" />
+    <Content Include="Views\Shared\TimeSlots.cshtml" />
+    <Content Include="Views\Shared\UserDetailsWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -305,7 +309,9 @@
     </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Appointment\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

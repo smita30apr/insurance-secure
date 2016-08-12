@@ -1,0 +1,130 @@
+﻿.overlay-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 1.2rem;
+    z-index: 200;
+}
+
+.overlay-popup.visible {
+    display : block;
+}
+
+.overlay-popup .lightbox {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: .3;
+}
+
+.overlay-popup .content {
+    width: 70%;
+    height: 70%;
+    max-width: 1500px;
+    max-height: 1500px;
+    background-color: #fff;
+    padding: 2rem 2rem 0;
+    color: #808184;
+}
+
+.overlay-popup .centered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.overlay-popup .content .popup-container {
+    height: inherit;
+    overflow-y: auto;
+}
+
+.overlay-popup .content footer {
+    display: block;
+    width: 100%;
+    padding: 1.5rem 0;
+    background-color: #fff;
+    height: 6rem;
+    min-width: inherit;
+    border-top: 1px solid #e2e2e2;
+}
+
+overlay-popup .content footer {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin-top: auto;
+}
+
+.overlay-popup .content footer .btn {
+    float: right;
+}
+
+/*TODO Remove cite somewhere else*/
+#appointment-popup .division{
+    width: 50%;
+    margin:auto;
+    padding: 2rem 2rem;
+}
+
+#appointment-popup .user-details{
+    float:right;
+}
+
+#appointment-popup .time-slot {
+    float: left;
+}
+
+#appointment-popup .time-slot > div {
+    width: 80%;
+}
+
+#appointment-date{
+    float:left;
+}
+
+#timeslots {
+    float:right;
+}
+
+
+#timeslots ul {
+    list-style-type: none;
+    padding-top: 2rem;
+    padding-left: 0;
+}
+#timeslots li {
+    display: initial;  
+    padding-right: 2rem;
+}
+
+#timeslots button {
+    width: 50px;
+    height: 50px;
+}
+
+#user-details > div{
+    display: block;
+    font-size: 1.6rem;
+    padding-bottom: 2rem;
+    width: inherit;
+}
+
+#user-details > div label{
+    width: 100px;
+}
+
+#user-details > div input{
+    max-width: inherit
+}
+
+button:disabled{
+    background-color: lightgrey;
+}
+
+button.selected{
+    background-color: blue;
+}

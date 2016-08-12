@@ -1,0 +1,37 @@
+﻿@model List<int>
+@using InsuranceSecure.Controllers;
+
+@{ 
+    var workingHours = AgentsController.GetWorkingHours();
+}
+
+<div class="slots">
+    <ul>
+        @foreach (var hour in workingHours.Take(3))
+        {
+            <li data-time-slot="@hour">
+                <button @(!Model.Contains(hour) ? "disabled" : "") class="btn">@hour:00</button>
+            </li>
+        }
+    </ul>
+
+    <ul>
+        @foreach (var hour in workingHours.Skip(3).Take(3))
+        {
+            <li data-time-slot="@hour">
+                <button @(!Model.Contains(hour) ? "disabled" : "") class="btn">@hour:00</button>
+            </li>
+        }
+    </ul>
+
+    <ul>
+        @foreach (var hour in workingHours.Skip(6))
+        {
+            <li data-time-slot="@hour">
+                <button @(!Model.Contains(hour) ? "disabled" : "") class="btn">@hour:00</button>
+            </li>
+        }
+    </ul>
+
+</div>
+

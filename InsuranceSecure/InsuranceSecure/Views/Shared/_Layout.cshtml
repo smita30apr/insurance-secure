@@ -25,6 +25,35 @@
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
 
+    <div id="appointment-popup" class="overlay-popup">
+        <div class="lightbox"></div>
+        <div class="centered content row">
+            <h2 class="descriptive-text">Want to discuss options with </h2>
+            <div class="popup-container">
+                <div class="time-slot division">
+                    <div>
+                        <h4>Choose date and timeslot for appointment</h4>
+                        <input id="appointment-date" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" data-url="@Url.Content("~/Agents/WorkingHours")"/>
+                        <div id="timeslots">
+                            @Html.Partial("TimeSlots",
+                                InsuranceSecure.Controllers.AgentsController.GetWorkingHours()/*.Where(w => w > DateTime.Now.Hour + 1)*/.ToList())
+                        </div>
+                    </div>        
+                </div>
+                <div id="user-details" class="user-details division">
+                    <h4>Your Details</h4>
+                    @Html.Partial("UserDetailsWidget")
+                </div>
+            </div>
+            <footer>
+                <button type="button"
+                        class="btn orange-btn select-button"
+                        data-url="@Url.Content("~/Agents/BookAppointment")">Book</button>
+                <button type="button" class="btn cancel-button">Cancel</button>
+            </footer>
+        </div>
+    </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
