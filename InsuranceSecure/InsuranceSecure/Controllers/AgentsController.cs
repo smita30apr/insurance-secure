@@ -70,25 +70,27 @@ namespace InsuranceSecure.Controllers
             var appointmentDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH-mm-ss", System.Globalization.CultureInfo.InvariantCulture);
             using (var client = new SmtpClient())
             {
-                MailMessage newMail = new MailMessage();
-                newMail.To.Add(new MailAddress("smita30apr@gmail.com"));
-                newMail.Subject = "Test Subject";
-                newMail.IsBodyHtml = true;
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                var inlineLogo = new LinkedResource(Server.MapPath("~/images/logo2.jpg"));
-                inlineLogo.ContentId = Guid.NewGuid().ToString();
+                    mail.From = new MailAddress("insurancesecure.mail@gmail.com");
+                    mail.To.Add("smita30apr@gmail.com");
+                    mail.Subject = "Test Mail";
+                    mail.Body = "This is for testing SMTP mail from GMAIL";
 
-                string body = string.Format(@"
-                    <p>Lorum Ipsum Blah Blah</p>
-                    <img src=""cid:{0}"" />
-                    <p>Lorum Ipsum Blah Blah</p>
-                    ", inlineLogo.ContentId);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("insurancesecure.mail@gmail.com", "insurance123$");
+                    SmtpServer.EnableSsl = true;
 
-                var view = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
-                view.LinkedResources.Add(inlineLogo);
-                newMail.AlternateViews.Add(view);
-
-                client.Send(newMail);
+                    SmtpServer.Send(mail);
+                }
+                catch (Exception ex)
+                {
+                    var x = 1;
+                    //MessageBox.Show(ex.ToString());
+                }
             }
             return Json(new { name ="s"});
         }
