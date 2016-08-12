@@ -33,10 +33,10 @@
                 <div class="time-slot division">
                     <div>
                         <h4>Choose date and timeslot for appointment</h4>
-                        <input id="appointment-date" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" data-url="@Url.Content("~/Agents/WorkingHours")"/>
+                        <input id="appointment-date" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")" data-url="@Url.Content("~/Agents/WorkingHours")"/>
                         <div id="timeslots">
                             @Html.Partial("TimeSlots",
-                                InsuranceSecure.Controllers.AgentsController.GetWorkingHours()/*.Where(w => w > DateTime.Now.Hour + 1)*/.ToList())
+                                InsuranceSecure.Controllers.AgentsController.GetWorkingHours().Where(w => w > DateTime.Now.Hour + 1).ToList())
                         </div>
                     </div>        
                 </div>
