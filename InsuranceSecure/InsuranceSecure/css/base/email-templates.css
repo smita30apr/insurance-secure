@@ -1,0 +1,9 @@
+﻿table.email-templates {
+    border-collapse: collapse;
+}
+
+table.email-templates,
+table.email-templates th,
+table.email-templates td {
+    border: 1px solid black;
+}

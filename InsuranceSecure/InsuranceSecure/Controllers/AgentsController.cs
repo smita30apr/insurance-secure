@@ -1,7 +1,9 @@
 ﻿using InsuranceSecure.Models.Agents;
+using InsuranceSecure.Models.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
 
@@ -9,7 +11,9 @@ namespace InsuranceSecure.Controllers
 {
     public class DisplayAgent
     {
+        public int Id { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
         public string Address { get; set; }
         public string Pin { get; set; }
         public string City { get; set; }
@@ -43,7 +47,9 @@ namespace InsuranceSecure.Controllers
                 .ToList();
             var displayAgents = agents.Select(ag => new DisplayAgent()
             {
+                Id = ag.Id,
                 Name = $"{ag.FirstName} {ag.LastName}",
+                Email = ag.Email,
                 Address = ag.Address,
                 Pin = ag.Pin.ToString(),
                 City = ag.City
@@ -64,35 +70,60 @@ namespace InsuranceSecure.Controllers
 
         [HttpGet]
         [Route("Agents/BookAppointment")]
-        public ActionResult BookAppointment(/*string url*/)
+        public bool BookAppointment(string user, string email, string contact, string dateTime)
         {
-            var dateTime = "2014-1-11";
-            var appointmentDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH-mm-ss", System.Globalization.CultureInfo.InvariantCulture);
-            using (var client = new SmtpClient())
+            var session = HttpContext.ApplicationInstance.Context.Session;
+            var appointmentDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            var agentName = session["@User/AgentName"] != null ? session["@User/AgentName"].ToString() : "Rajeev Srivastava";
+            var agentEmail = session["@User/AgentEmail"] != null && false? session["@User/AgentEmail"].ToString() : "";
+            using (var client = new SmtpClient("smtp.gmail.com"))
             {
                 try
                 {
-                    MailMessage mail = new MailMessage();
-                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    client.Port = 587;
+                    client.Credentials = new System.Net.NetworkCredential("insurancesecure.mail@gmail.com", "insurance123$");
+                    client.EnableSsl = true;
 
-                    mail.From = new MailAddress("insurancesecure.mail@gmail.com");
-                    mail.To.Add("smita30apr@gmail.com");
-                    mail.Subject = "Test Mail";
-                    mail.Body = "This is for testing SMTP mail from GMAIL";
+                    MailMessage usermail = new MailMessage();
+                    string text = $"Hi {user}<br><br> Thank you for choosing InsuranceSecure for your insurance needs.<br>Our agent will contact you shortly. Please find below the details.<br><br>";
+                    string html = Utilities.RenderPartialViewToString(this,
+                        "EmailTemplates/UserAppointmentConfirmation",
+                        Tuple.Create(agentName, appointmentDate.ToString("MMM dd, yyyy"), appointmentDate.ToShortTimeString()));
 
-                    SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("insurancesecure.mail@gmail.com", "insurance123$");
-                    SmtpServer.EnableSsl = true;
+                    usermail.From = new MailAddress("insurancesecure.mail@gmail.com");
+                    usermail.To.Add(!string.IsNullOrEmpty(email) ? email : "smita30apr@gmail.com");
+                    usermail.Subject = "Appointment confirmation";
+                    usermail.IsBodyHtml = true;
+                    usermail.Body = text + html;
+                    client.Send(usermail);
 
-                    SmtpServer.Send(mail);
+                    MailMessage agentmail = new MailMessage();
+                    string agenttext = $"Hi {agentName}<br><br> New appointment details. Please contact the user ASAP.<br><br>";
+                    string agenthtml = Utilities.RenderPartialViewToString(this,
+                        "EmailTemplates/AppointmentConfirmation",
+                        new AgentsEmailData()
+                        {
+                            UserName = user,
+                            UserContact = contact,
+                            UserEmail = email,
+                            Date = appointmentDate.ToString("MMM dd, yyyy"),
+                            Time = appointmentDate.ToShortTimeString()
+                        });
+                    agentmail.From = new MailAddress("insurancesecure.mail@gmail.com");
+                    agentmail.To.Add(!string.IsNullOrEmpty(agentEmail) ? agentEmail : "smita30apr@gmail.com");
+                    agentmail.Subject = "New Appointment Request";
+                    agentmail.IsBodyHtml = true;
+                    agentmail.Body = agenttext + agenthtml;
+                    client.Send(agentmail);
                 }
                 catch (Exception ex)
                 {
-                    var x = 1;
-                    //MessageBox.Show(ex.ToString());
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return false;
                 }
             }
-            return Json(new { name ="s"});
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return true;
         }
 
         // GET: Agents/Details/5

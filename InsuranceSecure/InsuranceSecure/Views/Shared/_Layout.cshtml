@@ -21,14 +21,17 @@
         @RenderBody()     
     </main>
 
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
+    <div id="loading" class="overlay-popup">
+        <div class="lightbox"></div>
+        <div class="centered content row">
+            <img class="hourglass" src="~/images/gifs/hourglass.svg">
+        </div>
+    </div>
 
     <div id="appointment-popup" class="overlay-popup">
         <div class="lightbox"></div>
         <div class="centered content row">
-            <h2 class="descriptive-text">Want to discuss options with </h2>
+            <h2 class="descriptive-text">Want to discuss options with <span class="agent-name"></span> ?</h2>
             <div class="popup-container">
                 <div class="time-slot division">
                     <div>
@@ -45,7 +48,13 @@
                     @Html.Partial("UserDetailsWidget")
                 </div>
             </div>
+            
             <footer>
+                <div class="confirmation">
+                    <label>*</label>
+                    <input type="checkbox" />
+                    <label class="confirm">Confirm my appointment</label>
+                </div>
                 <button type="button"
                         class="btn orange-btn select-button"
                         data-url="@Url.Content("~/Agents/BookAppointment")">Book</button>

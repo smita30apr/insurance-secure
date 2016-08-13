@@ -1,0 +1,15 @@
+﻿@model Tuple<string,string>
+@{ 
+    var appointmentDate = DateTime.ParseExact(Model.Item2, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+}
+<div id="appointment-confirmation">
+    <h2>Your appointment is confirmed!</h2>
+    <div>
+        -- with
+        <span>@Model.Item1</span>
+        at
+        <span>@($"{appointmentDate.ToString("MMM dd, yyyy")} / {appointmentDate.ToShortTimeString()}")</span>
+    </div>
+    <label>You will be getting your confirmation email shortly.</label>
+    <a href="~/home">Return Home</a>
+</div>

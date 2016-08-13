@@ -40,5 +40,32 @@ namespace InsuranceSecure.Controllers
 
             return View();
         }
+
+        public ActionResult AppointmentConfirmation()
+        {
+            return View(Tuple.Create(Request.QueryString["agentName"], Request.QueryString["date"]));
+        }
+
+        public bool SaveSessionObject(string name)
+        {
+            var keys = Request.QueryString.AllKeys.Where(k => k != "name").ToList();
+            var session = HttpContext.ApplicationInstance.Context.Session;
+            try
+            {
+                foreach (var key in keys)
+                {
+                    var value = Request.QueryString[key];
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        session[$"@{name}/{key}"] = value;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

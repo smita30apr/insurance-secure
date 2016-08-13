@@ -199,6 +199,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AgentsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Utilities\Utilities.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Insurance\InsuranceData.cs" />
     <Compile Include="Models\Insurance\Life.cs" />
@@ -215,6 +216,7 @@
     <Content Include="App_Data\Agents_log.ldf">
       <DependentUpon>Agents.mdf</DependentUpon>
     </Content>
+    <Content Include="css\base\email-templates.css" />
     <Content Include="css\base\header.css" />
     <Content Include="css\base\popups.css" />
     <Content Include="favicon.ico" />
@@ -223,6 +225,7 @@
     <Content Include="css\base\Site.css" />
     <None Include="js\jquery.validate-vsdoc.js" />
     <Content Include="images\car-insurance.jpg" />
+    <Content Include="images\gifs\hourglass.svg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.jpg" />
     <Content Include="images\policy-compare.jpg" />
@@ -291,6 +294,9 @@
     <Content Include="Views\Agents\AgentsUserView.cshtml" />
     <Content Include="Views\Shared\TimeSlots.cshtml" />
     <Content Include="Views\Shared\UserDetailsWidget.cshtml" />
+    <Content Include="Views\Shared\EmailTemplates\AppointmentConfirmation.cshtml" />
+    <Content Include="Views\Shared\EmailTemplates\UserAppointmentConfirmation.cshtml" />
+    <Content Include="Views\Home\AppointmentConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -309,9 +315,7 @@
     </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Appointment\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,12 +1,15 @@
 ﻿@model List<InsuranceSecure.Controllers.DisplayAgent>
 
-<ul>
+<ul id="agents-view">
     @foreach (var agent in Model)
     {
-        <li>
-            <h3>@agent.Name</h3>
-            <span>@agent.Address</span>
-            <span>@agent.City @agent.Pin</span>
+        <li data-agent-id="@agent.Id" data-url="@Url.Content("~/home/SaveSessionObject")">
+            <a href="javascript:;">
+                <input type="hidden" name="email" value="@agent.Email"/>
+                <h3 class="agent-name">@agent.Name</h3>
+                <span>@agent.Address</span>
+                <span>@agent.City @agent.Pin</span>
+            </a>
         </li>
     }
 </ul>

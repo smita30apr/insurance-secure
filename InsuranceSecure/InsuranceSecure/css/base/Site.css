@@ -56,6 +56,23 @@ main{
 
 }
 
+#loading{
+    float: right;
+    display:none;
+}
+
+#loading.visible {
+    display:block;
+}
+
+#loading .content {
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    padding: 0.5rem 0.5rem;
+    color: #808184;
+}
+
 #is-insurance{
     padding: 2rem 2rem;
 }
@@ -79,4 +96,39 @@ main{
 .btn{    
     line-height: 8px;
     margin-right: 2rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#open-appointment{
+    display:none
+}
+
+#appointment-confirmation label{
+    padding-bottom: 10rem;
+}
+
+#appointment-confirmation a{
+    display: block;
+}
+
+#appointment-confirmation > div{
+    padding-left: 5rem;
+    font-size: 1.4rem;
+    padding-bottom: 5rem;
+}
+
+#appointment-confirmation span{
+    color: red;
+    font-weight:bold;
+}
+
+#agents-view a{
+    overflow: auto;
+}
+
+a{
+    text-decoration: none;
 }

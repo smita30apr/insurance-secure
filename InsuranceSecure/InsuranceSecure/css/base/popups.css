@@ -28,6 +28,15 @@
     color: #808184;
 }
 
+.overlay-popup footer > div{
+    width: 50%;
+    float:left;
+}
+
+.overlay-popup footer .confirm.active{
+    color: red;
+}
+
 .overlay-popup .centered {
     position: absolute;
     top: 0;
@@ -80,6 +89,10 @@ overlay-popup .content footer {
 
 #appointment-popup .time-slot > div {
     width: 80%;
+}
+
+#appointment-popup .centered > div{
+    overflow: auto;
 }
 
 #appointment-date{
