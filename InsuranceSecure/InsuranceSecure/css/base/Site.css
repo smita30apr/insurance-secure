@@ -125,10 +125,57 @@ ul {
     font-weight:bold;
 }
 
+#agents-view {
+    float: left
+}
+
 #agents-view a{
     overflow: auto;
+}
+
+#agents-view-div > * {
+    width: 50%;
 }
 
 a{
     text-decoration: none;
 }
+
+#googleMap {
+    padding: 4rem 4rem;
+}
+
+table {
+    width: 100%;
+}
+table td {
+    padding: 2rem 0;
+    text-align:center; 
+    vertical-align:middle;
+}
+table th {
+    background-color: #929497;
+    padding: 1rem 1rem;
+    text-align:center; 
+    vertical-align:middle;
+}
+  table td:not(.proceed){
+    border: 1px solid black;
+  }
+
+  table tr img{
+      max-width: 200px;
+  }
+
+  table tr a.proceed {
+      background-color: #f65e00;
+      padding: 0.5rem 2rem;
+      width: 200px;
+      min-width: 20rem;
+      text-decoration: none;
+      width: 150px;
+      color: white
+  }
+  header select{
+      border: none
+  }

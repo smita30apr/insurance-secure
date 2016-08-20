@@ -14,11 +14,24 @@
 
     <div id="is-insurance-types">
         <ul>
-            <li class="@(type == "life" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=life")">Life</a></li>
-            <li class="@(type == "car" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=car")">Car</a></li>
+            <li class="@(type == "life" || type=="term" || type=="child" || type == "retirement" || type == "ulip" ? "selected" : "")">
+                <select name="type">
+                    <option value="">Life</option>
+                    <option @(type == "term" ? "selected" : "") value="term">Term Plan</option>
+                    <option @(type == "child" ? "selected" : "") value="child">Child Plan</option>
+                    <option @(type == "retirement" ? "selected" : "") value="retirement">Retirement</option>
+                    <option @(type == "ulip" ? "selected" : "") value="ulip">ULIP</option>
+                </select>
+            </li>
+            <li class="@(type == "car" ? "selected" : "")">
+                <select name="type">
+                    <option value="">Motor</option>
+                    <option @(type == "car" ? "selected" : "") value="car">Car</option>
+                    <option @(type == "bike" ? "selected" : "") value="bike">Bike</option>
+                </select>
+            </li>
             <li class="@(type == "home" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=home")">Home</a></li>
             <li class="@(type == "health" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=health")">Health</a></li>
-            <li class="@(type == "bike" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=bike")">Bike</a></li>
             <li class="@(type == "travel" ? "selected" : "")"><a href="@Url.Content("~/home/insurance?type=travel")">Travel</a></li>
         </ul>
     </div>

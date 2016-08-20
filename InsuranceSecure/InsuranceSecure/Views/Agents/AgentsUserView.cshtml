@@ -1,15 +1,20 @@
 ﻿@model List<InsuranceSecure.Controllers.DisplayAgent>
 
-<ul id="agents-view">
-    @foreach (var agent in Model)
-    {
-        <li data-agent-id="@agent.Id" data-url="@Url.Content("~/home/SaveSessionObject")">
-            <a href="javascript:;">
-                <input type="hidden" name="email" value="@agent.Email"/>
-                <h3 class="agent-name">@agent.Name</h3>
-                <span>@agent.Address</span>
-                <span>@agent.City @agent.Pin</span>
-            </a>
-        </li>
-    }
-</ul>
+<div id="agents-view-div" data-pin="@Request.QueryString["pin"]">
+    <ul id="agents-view">
+        @foreach (var agent in Model)
+        {
+            <li data-agent-id="@agent.Id"
+                data-url="@Url.Content("~/home/SaveSessionObject")"
+                data-address = "@agent.Address, @agent.City @agent.Pin">
+                <a href="javascript:;">
+                    <input type="hidden" name="email" value="@agent.Email" />
+                    <h3 class="agent-name">@agent.Name</h3>
+                    <span>@agent.Address</span>
+                    <span>@agent.City @agent.Pin</span>
+                </a>
+            </li>
+        }
+    </ul>
+    <div id="googleMap" style="width:500px;height:380px;"></div>
+</div>

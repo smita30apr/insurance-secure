@@ -110,7 +110,7 @@ namespace InsuranceSecure.Controllers
                             Time = appointmentDate.ToShortTimeString()
                         });
                     agentmail.From = new MailAddress("insurancesecure.mail@gmail.com");
-                    agentmail.To.Add(!string.IsNullOrEmpty(agentEmail) ? agentEmail : "smita30apr@gmail.com");
+                    agentmail.To.Add(!string.IsNullOrEmpty(agentEmail) ? agentEmail : "sanjeev2675@gmail.com");
                     agentmail.Subject = "New Appointment Request";
                     agentmail.IsBodyHtml = true;
                     agentmail.Body = agenttext + agenthtml;

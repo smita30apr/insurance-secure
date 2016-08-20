@@ -5,8 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,6 +16,34 @@ namespace InsuranceSecure.Controllers
 {
     public class CompareController : Controller
     {
+        //private string GetImageName(string type)
+        //{
+        //    switch (type.ToLower())
+        //    {
+        //        case "reliance":
+        //            return "reliance.png";
+        //        case "tata aia":
+        //            return "tata-aia-life.png";
+        //        case "birla":
+        //            return "birla.png";
+        //    }
+        //    return "";
+        //}
+
+        //private string GetBrochureName(string type)
+        //{
+        //    switch (type.ToLower())
+        //    {
+        //        case "reliance":
+        //            return "Reliance.pdf";
+        //        case "tata aia":
+        //            return "tata-aia.pdf";
+        //        case "birla":
+        //            return "irla.png";
+        //    }
+        //    return "";
+        //}
+
         [HttpGet]
         [ActionName("CompareInsurance")]
         public ActionResult CompareInsurance()
@@ -23,14 +53,29 @@ namespace InsuranceSecure.Controllers
             errorMessage = !status ? "User Details cant be saved" : errorMessage;
             if (string.IsNullOrEmpty(errorMessage))
             {
-                List<InsuranceData> insuranceData = new List<InsuranceData>()
+                List<InsuranceData> insuranceData = new List<InsuranceData>();
+                var stream = GetType().Assembly.GetManifestResourceStream("InsuranceSecure.App_Data.LifeInsurance.txt");
+                using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
-                    new InsuranceData("Reliance", "Reliance Cover", "Description to be added"),
-                    new InsuranceData("Reliance", "Reliance Cover 1", "Description to be added"),
-                    new InsuranceData("Tata IGI", "Tata Cover 2", "Description to be added"),
-                    new InsuranceData("Inusrance 1", "Reliance Cover 2", "Description to be added"),
-                    new InsuranceData("Insurance 2", "Reliance Cover 3", "Description to be added")
-                };
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if (!string.IsNullOrWhiteSpace(line))
+                        {
+                            var insurance = line.Split(':');
+                            insuranceData.Add(new InsuranceData()
+                            {
+                                Type = insurance[1],
+                                Heading = insurance[2],
+                                CoverTill = insurance[3],
+                                TotalPayout = insurance[4],
+                                Premium = insurance[5],
+                                ImageUrl = insurance[6],
+                                Brochure = insurance[7]
+                            });
+                        }
+                    }
+                }
                 return View("Compare", insuranceData);
             }
             return Json(new

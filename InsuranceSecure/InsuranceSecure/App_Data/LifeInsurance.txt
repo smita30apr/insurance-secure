@@ -1,0 +1,3 @@
+1:Reliance:Reliance Life Insurance:66:1 Cr:15000:reliance.png:Reliance
+2:Tata AIA:Maha Raksha Supreme:66:1 Cr:5000:tata-aia-life.png:tata-aia
+3:Birla:Sun Life Insurance:66:1 Cr:10000:birla.png:Birla

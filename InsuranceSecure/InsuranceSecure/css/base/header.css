@@ -63,8 +63,16 @@ header .outer-header {
 
 #is-insurance-types li.selected {
     border-bottom: 3px solid #f65e00;
+    padding-bottom: 0.5rem;
 }
 
 .invisible {
     display: none;
 }
+
+/*header select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}*/

@@ -34,6 +34,39 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DeployEncryptKey>Encryption password is used only if any deployment setting is marked as secure</DeployEncryptKey>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="DefaultConnection-Deployment" Order="1" Enabled="False">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDb%29\MSSQLLocalDB%3bAttachDbFilename=|DataDirectory|\aspnet-InsuranceSecure-20160718021604.mdf%3bInitial Catalog=aspnet-InsuranceSecure-20160718021604%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\DefaultConnection-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="Agents-Deployment" Order="2" Enabled="False">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDB%29\MSSQLLocalDB%3bAttachDbFilename=|DataDirectory|\Agents.mdf%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\Agents-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="Agent-Deployment" Order="3" Enabled="False">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDB%29\MSSQLLocalDB%3bAttachDbFilename=|DataDirectory|\Agents.mdf%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\Agent-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="AgentsEntities-Deployment" Order="4">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDB%29\MSSQLLocalDB%3bAttachDbFilename=|DataDirectory|\Agents.mdf%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\AgentsEntities-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -216,6 +249,7 @@
     <Content Include="App_Data\Agents_log.ldf">
       <DependentUpon>Agents.mdf</DependentUpon>
     </Content>
+    <EmbeddedResource Include="App_Data\LifeInsurance.txt" />
     <Content Include="css\base\email-templates.css" />
     <Content Include="css\base\header.css" />
     <Content Include="css\base\popups.css" />
@@ -224,13 +258,17 @@
     <Content Include="Global.asax" />
     <Content Include="css\base\Site.css" />
     <None Include="js\jquery.validate-vsdoc.js" />
+    <Content Include="images\birla.png" />
     <Content Include="images\car-insurance.jpg" />
     <Content Include="images\gifs\hourglass.svg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.jpg" />
     <Content Include="images\policy-compare.jpg" />
+    <Content Include="images\reliance.png" />
+    <Content Include="images\tata-aia-life.png" />
     <Content Include="js\base\appointment.js" />
     <Content Include="js\base\countries.js" />
+    <Content Include="js\base\google-location.js" />
     <Content Include="js\base\index.js" />
     <Content Include="js\jquery.validate.js" />
     <Content Include="js\jquery.validate.min.js" />
@@ -297,6 +335,13 @@
     <Content Include="Views\Shared\EmailTemplates\AppointmentConfirmation.cshtml" />
     <Content Include="Views\Shared\EmailTemplates\UserAppointmentConfirmation.cshtml" />
     <Content Include="Views\Home\AppointmentConfirmation.cshtml" />
+    <Content Include="pdf\Birla.pdf" />
+    <Content Include="pdf\Reliance.pdf" />
+    <Content Include="pdf\tata-aia.pdf" />
+    <None Include="Properties\PublishProfiles\InsuranceSecure.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\ISecure.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

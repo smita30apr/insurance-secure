@@ -2,15 +2,33 @@
 @{ 
     var session = HttpContext.Current.Session;
 }
-<ul>
+<table>
+    <tr>
+        <th>Insurer</th>
+        <th>Plan</th>
+        <th>Total Payout</th>
+        <th>Cover Upto</th>
+        <th>Premium</th>
+        <th>Download Brochure</th>
+    </tr>
+    <tr class="spacer"></tr>
     @foreach (var insurance in Model)
     {
-        <li>
-            <a href="@Url.Content($"~/Agents/All?pin={session["@User/PinCode"]}&type={insurance.Type}")">
-                <h2>@insurance.Type</h2>
-                <h3>@insurance.Heading</h3>
-                <span>@insurance.Description</span>
-            </a>
-        </li>
+        <tr>
+            <td title="@insurance.Type">
+                <img src="~/images/@insurance.ImageUrl"/>
+            </td>
+            <td>@insurance.Heading</td>
+            <td>Rs. @insurance.TotalPayout</td>
+            <td>@insurance.CoverTill years</td>
+            <td>Rs. @insurance.Premium</td>
+            <td>
+                <a href="~/pdf/@(insurance.Brochure).pdf">@($"{insurance.Brochure}.pdf")</a>
+            </td>
+            <td class="proceed" title="Click to Proceed">
+                <a class="proceed" href="@Url.Content($"~/Agents/All?pin={session["@User/PinCode"]}&type={insurance.Type}")">Proceed
+                </a>
+            </td>
+        </tr>
     }
-</ul>
+</table>

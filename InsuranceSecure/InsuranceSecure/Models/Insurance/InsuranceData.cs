@@ -8,16 +8,21 @@ namespace InsuranceSecure.Models.Insurance
     {
         public string Type { get; set; }
 
+        public string Image { get; set; }
+
+        public string TotalPayout { get; set; }
+
+        public string CoverTill { get; set; }
+
         public string Heading { get; set; }
 
         public string Description { get; set; }
 
-        public InsuranceData(string type, string heading, string desc)
-        {
-            Type = type;
-            Heading = heading;
-            Description = desc;
-        }    
+        public string Premium { get; set; }
+
+        public string Brochure { get; set; }
+
+        public string ImageUrl { get; set; }
 
     }
 }

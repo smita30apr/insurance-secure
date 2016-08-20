@@ -14,6 +14,10 @@ namespace InsuranceSecure.ModelMappers
             switch (type)
             {
                 case "life":
+                case "child":
+                case "term":
+                case "retirement":
+                case "ulip":
                     insurance = new Life();
                     break;
                 case "car":
