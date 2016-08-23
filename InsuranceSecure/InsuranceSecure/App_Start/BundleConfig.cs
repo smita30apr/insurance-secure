@@ -14,14 +14,14 @@ namespace InsuranceSecure
                 from bundleDir in Directory.EnumerateDirectories(Path.Combine(basePath, "css"), "*")
                 let name = Path.GetFileName(bundleDir)
                 select
-                    new StyleBundle("~/css/" + name + ".min.css")
+                    new StyleBundle("~/Bundle/css/" + name + ".css")
                     .IncludeDirectory("~/css/" + name + "/", "*.css", true);
 
             var scriptBundles =
                 from bundleDir in Directory.EnumerateDirectories(Path.Combine(basePath, "js"), "*")
                 let name = Path.GetFileName(bundleDir)
                 select
-                    new ScriptBundle($"~/js/{name}.min.js")
+                    new ScriptBundle($"~/Bundle/js/{name}.js")
                     .IncludeDirectory($"~/js/{name}/", "*.js", true);
 
             var allBundles = styleBundles.Concat(scriptBundles);
