@@ -2,6 +2,7 @@
 using InsuranceSecure.Models.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -20,6 +21,7 @@ namespace InsuranceSecure.Controllers
     }
     public class AgentsController : Controller
     {
+        private AgentsEntities _db = new AgentsEntities();
         public static List<int> GetWorkingHours()
         {
             return new List<int>() { 9, 10, 11, 12, 13, 15, 16, 17 };
@@ -29,7 +31,6 @@ namespace InsuranceSecure.Controllers
         [Route("Agents")]
         public ActionResult Index()
         {
-            AgentsEntities _db = new AgentsEntities();
             var model = _db.Agents.ToList();
             return View(model);
         }
@@ -40,7 +41,6 @@ namespace InsuranceSecure.Controllers
         {
             var pin = Request.QueryString["pin"];
             var type = Request.QueryString["type"];
-            AgentsEntities _db = new AgentsEntities();
             //TODO: Query only type from database
             var agents = _db.Agents
                 .Where(ag => ag.Pin.ToString() == pin && ag.Type.ToLower() == type.ToLower())
@@ -138,6 +138,20 @@ namespace InsuranceSecure.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNew([Bind(Exclude = "Id")] Agent agent)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Agents.Add(agent);
+                _db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return View(agent);
+        }
+
         // POST: Agents/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -157,16 +171,27 @@ namespace InsuranceSecure.Controllers
         // GET: Agents/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var agentToEdit = (from m in _db.Agents
+
+                               where m.Id == id
+
+                               select m).First();
+
+            return View(agentToEdit);
         }
 
         // POST: Agents/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditAgent(Agent agentToEdit)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!ModelState.IsValid)
+
+                    return View();
+
+                _db.Entry(agentToEdit).State = EntityState.Modified;
+                _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -177,19 +202,29 @@ namespace InsuranceSecure.Controllers
         }
 
         // GET: Agents/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Agent agent = _db.Agents.Find(id);
+            if (agent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(agent);
         }
 
         // POST: Agents/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                Agent agent = _db.Agents.Find(id);
+                _db.Agents.Remove(agent);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
