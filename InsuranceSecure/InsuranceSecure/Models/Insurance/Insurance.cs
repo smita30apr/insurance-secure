@@ -46,9 +46,5 @@ namespace InsuranceSecure.Models.Insurance
         [Display(Name = "City")]
         public string City { get; set; }
 
-        [Required]
-        [Display(Name = "Insurance Coverage")]
-        public InsuranceCoverage Coverage { get; set; }
-
     }
 }

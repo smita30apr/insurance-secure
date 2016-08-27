@@ -16,5 +16,9 @@ namespace InsuranceSecure.Models.Insurance
         [Required]
         [Display(Name = "DOB of eldest person")]
         public DateTime EldestDOB { get; set; }
+
+        [Required]
+        [Display(Name = "Insurance Coverage")]
+        public InsuranceCoverage Coverage { get; set; }
     }
 }

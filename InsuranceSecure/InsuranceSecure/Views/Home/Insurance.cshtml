@@ -25,15 +25,6 @@
                         case "State":
                             <select required id="state" name="state"></select>
                             break;
-                        case "Coverage":
-                            <select required id="coverage" name="coverage">
-                                <option>Select Insurance Coverage</option>
-                                @foreach (var option in Enum.GetValues(typeof(InsuranceCoverage)))
-                                {
-                                    <option value="@option.ToString()">@InsuranceSecure.Helpers.UrlHelpers.GetCoverageString(Url, (InsuranceCoverage)option)</option>
-                                }
-                            </select>
-                            break;
                         case "ContactNumber":
                         case "PinCode":
                             <input name=@property.Name.ToLower() required type="number" maxlength="@(property.Name == "PinCode" ? "6": "15")" placeholder="Enter @displayName" />

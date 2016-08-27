@@ -8,6 +8,15 @@
     <div class="input">
         @switch (property.Name)
         {
+            case "Coverage":
+                <select required id="coverage" name="coverage">
+                    <option>Select Insurance Coverage</option>
+                    @foreach (var option in Enum.GetValues(typeof(InsuranceCoverage)))
+                    {
+                        <option value="@option.ToString()">@InsuranceSecure.Helpers.UrlHelpers.GetCoverageString(Url, (InsuranceCoverage)option)</option>
+                    }
+                </select>
+                break;
             case "SmokingStatus":
                 <input name="smoking-status" type="checkbox" id="smokingStatus"/>
                 <label for="smokingStatus">Smoking Status</label>
