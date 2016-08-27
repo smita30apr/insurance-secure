@@ -258,9 +258,14 @@
     <Content Include="Global.asax" />
     <Content Include="css\base\Site.css" />
     <None Include="js\jquery.validate-vsdoc.js" />
+    <Content Include="images\all-insurance.jpg" />
     <Content Include="images\birla.png" />
     <Content Include="images\car-insurance.jpg" />
     <Content Include="images\gifs\hourglass.svg" />
+    <Content Include="images\health-insurance.jpg" />
+    <Content Include="images\home-insurance.jpg" />
+    <Content Include="images\life-insurance.png" />
+    <Content Include="images\life-insurance1.jpg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo2.jpg" />
     <Content Include="images\policy-compare.jpg" />

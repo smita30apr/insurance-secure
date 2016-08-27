@@ -15,7 +15,7 @@ namespace InsuranceSecure.Controllers
     {
         public ActionResult Index()
         {
-            return Redirect(Url.Content("~/home/insurance?type=life"));
+            return View();
         }
 
         [ActionName("Insurance")]

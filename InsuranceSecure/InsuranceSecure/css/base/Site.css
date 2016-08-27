@@ -179,3 +179,15 @@ table th {
   header select{
       border: none
   }
+
+  #myCarousel .carousel-inner {
+   margin: 1rem 1rem;
+   margin-bottom: 3rem;
+  }
+  #myCarousel img{
+      margin:auto;
+      height: 400px
+  }
+  #myCarousel .carousel-control.right{
+      right: 30px;
+  }
