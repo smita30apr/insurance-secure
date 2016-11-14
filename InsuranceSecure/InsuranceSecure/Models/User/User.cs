@@ -23,6 +23,7 @@ namespace InsuranceSecure.Models.User
                 session["@User/Email"] = queryString["email"];
                 session["@User/ContactNumber"] = queryString["contactnumber"];
                 session["@User/DOB"] = queryString["dob"];
+                session["@User/City"] = queryString["city"];
                 var insurance = new object();
                 switch (insuranceType.ToLower())
                 {

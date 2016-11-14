@@ -83,6 +83,14 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PanNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PanNumber)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm("DeleteConfirmed", "Agents")) {

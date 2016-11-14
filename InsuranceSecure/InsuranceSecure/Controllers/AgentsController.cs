@@ -18,6 +18,7 @@ namespace InsuranceSecure.Controllers
         public string Address { get; set; }
         public string Pin { get; set; }
         public string City { get; set; }
+        public string Pan { get; set; }
     }
     public class AgentsController : Controller
     {
@@ -39,11 +40,11 @@ namespace InsuranceSecure.Controllers
         [ActionName("All")]
         public ActionResult Agents()
         {
-            var pin = Request.QueryString["pin"];
+            var city = Request.QueryString["city"];
             var type = Request.QueryString["type"];
             //TODO: Query only type from database
             var agents = _db.Agents
-                .Where(ag => ag.Pin.ToString() == pin && ag.Type.ToLower() == type.ToLower())
+                .Where(ag => ag.City.ToString() == city && ag.Type.ToLower() == type.ToLower())
                 .ToList();
             var displayAgents = agents.Select(ag => new DisplayAgent()
             {

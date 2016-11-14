@@ -26,7 +26,7 @@
                 <a href="~/pdf/@(insurance.Brochure).pdf">@($"{insurance.Brochure}.pdf")</a>
             </td>
             <td class="proceed" title="Click to Proceed">
-                <a class="proceed" href="@Url.Content($"~/Agents/All?pin={session["@User/PinCode"]}&type={insurance.Type}")">Proceed
+                <a class="proceed" href="@Url.Content($"~/Agents/All?city={session["@User/City"]}&type={insurance.Type}")">Proceed
                 </a>
             </td>
         </tr>

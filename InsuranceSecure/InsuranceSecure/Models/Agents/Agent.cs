@@ -24,5 +24,6 @@ namespace InsuranceSecure.Models.Agents
         public string City { get; set; }
         public byte[] Photo { get; set; }
         public string Email { get; set; }
+        public string PanNumber { get; set; }
     }
 }
